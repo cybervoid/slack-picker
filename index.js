@@ -28,13 +28,19 @@ function parseCommandData(data) {
     //check if the list is comma separated
     let res = `Can't parse the provided list. Please provide a valid list 😕`
 
-    if (data.indexOf(",") === -1) {
+    if (data.indexOf(",") !== -1) {
+        res = generateList(data, ",")
+    } else {
         //comma list not detected, try space separated list
         if (data.indexOf(" ") !== -1) {
-            const list = data.split(" ");
-            const random = Math.floor(Math.random() * list.length)
-            res = list[random]
+            res = generateList(data, " ")
         }
     }
     return res
+}
+
+function generateList(data, listSeparator) {
+    const list = data.split(listSeparator);
+    const random = Math.floor(Math.random() * list.length)
+    return `${list[random]} was chosen 🙌`
 }
