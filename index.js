@@ -1,29 +1,45 @@
-const http = require('http');
-const hostname = 'localhost';
 const querystring = require('querystring')
 
-const port = 3000;
-const server = http.createServer((req, res) => {
-    console.log(req.headers);
-    res.statusCode = 200;
+exports.handler = async (event) => {
+    // TODO implement
+    const response = {
+        statusCode: 200,
+        body: JSON.stringify('Hello from Lambda!'),
+    };
+    let buff = new Buffer(event.body, 'base64');
+    const queryData = buff.toString('ascii')
+    const data = querystring.parse(queryData)
 
-    let rawData = ''
-    req.on('data', chunk => {
-        rawData += chunk
-    })
-
-    req.on('end', () => {
-        let parsedData = querystring.decode(rawData)
-        const command = parsedData.command
-        const commandData = parsedData.text
-        const response = parseCommandData(commandData)
-        res.end(`${response}`);
-    });
+    console.log(`detected list ${data}`)
+    return data
+    // return parseCommandData(data)
+};
 
 
-})
-server.listen(port, hostname);
-
+//
+//
+// const port = 3000;
+// const server = http.createServer((req, res) => {
+//     console.log(req.headers);
+//     res.statusCode = 200;
+//
+//     let rawData = ''
+//     req.on('data', chunk => {
+//         rawData += chunk
+//     })
+//
+//     req.on('end', () => {
+//         let parsedData = querystring.decode(rawData)
+//         const command = parsedData.command
+//         const commandData = parsedData.text
+//         const response = parseCommandData(commandData)
+//         res.end(`${response}`);
+//     });
+//
+//
+// })
+// server.listen(port, hostname);
+//
 function parseCommandData(data) {
     //check if the list is comma separated
     let res = `Can't parse the provided list. Please provide a valid list 😕`
