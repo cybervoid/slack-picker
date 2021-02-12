@@ -1,0 +1,27 @@
+{
+  "name": "slack-picker",
+  "version": "1.0.0",
+  "description": "slack app will pick or select random element fromm given list",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cybervoid/slack-picker.git"
+  },
+  "keywords": [
+    "slack",
+    "app",
+    "random",
+    "list",
+    "pick",
+    "lambda"
+  ],
+  "author": "rafaelgil",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cybervoid/slack-picker/issues"
+  },
+  "homepage": "https://github.com/cybervoid/slack-picker#readme"
+}
